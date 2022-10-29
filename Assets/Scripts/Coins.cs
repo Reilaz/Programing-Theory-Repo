@@ -21,7 +21,7 @@ public class Coins : MonoBehaviour
         if (collision.gameObject.CompareTag("Plane"))
         {
             fireworksParticle.Play();
-            Destroy(gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }

@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<GameObject> balls;
-    public GameObject blockLeft;
-    public GameObject blockRight;
+    private PoolController poolController;
 
-    private float spawnRate = 1.0f;
+    [Header("System Settings")]
+    //private float spawnRate = 10.0f;
     private float spawnRangeX = 10.0f;
     private float spawnPosY = 15.0f;
     private float spawnPosX = 16.0f;
-    private float startDelay = 2.0f;
+    private float startDelay = 1.0f;
     private float spawnInterval = 1.0f;
+    private bool isInvoke;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        InvokeRepeating("SpawnBalls",startDelay,spawnInterval);
-        InvokeRepeating("SpawnBlocks",spawnRate,0.5f);
+        poolController = GameObject.Find("PoolObjects").GetComponent<PoolController>();
     }
 
     // Update is called once per frame
@@ -27,17 +26,40 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    void SpawnBalls()
+    void OnEnable()
     {
-        int index = Random.Range(0,balls.Count);
+        StartCoroutine(DelayBall());
+        StartCoroutine(DelayEnemy());
+    }
+    void BallInvoker()
+    {
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX,spawnRangeX),spawnPosY,0);
-        Instantiate(balls[index],spawnPos,balls[index].transform.rotation);
+        int ballType = Random.Range(0,100);
+        GameObject ball = poolController.SpawnBalls(ballType);
+        ball.transform.position = spawnPos;
+    }
+    void EnemyInvoker()
+    {
+        Vector3 spawnPos = new Vector3(-spawnPosX,Random.Range(3,9),0);
+        GameObject enemy = poolController.SpawnEnemy();
+        enemy.transform.position = spawnPos;
+    }
+    IEnumerator DelayBall()
+    {
+        yield return new WaitForSeconds(startDelay);
+        while(true)
+        {
+            BallInvoker();
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
     void SpawnBlocks()
     {
-        Vector3 spawnPosEnemyLeft = new Vector3(-spawnPosX,Random.Range(7,10),0);
-        Vector3 spawnPosEnemySideRight = new Vector3(spawnPosX,Random.Range(2,6),0);
-        Instantiate(blockLeft,spawnPosEnemyLeft,blockLeft.transform.rotation);
-        Instantiate(blockRight,spawnPosEnemySideRight,blockRight.transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        while(true)
+        {
+            EnemyInvoker();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

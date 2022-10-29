@@ -16,11 +16,11 @@ public class DestroyOutOfBounds : MonoBehaviour
     {
         if (transform.position.x > sideBoundry)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (transform.position.x < -sideBoundry)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

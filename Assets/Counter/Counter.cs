@@ -26,7 +26,7 @@ public class Counter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CounterText.text = "Count : " + Count;
-        Destroy(other.gameObject);
+        other.gameObject.SetActive(false);
 
         if(other.gameObject.CompareTag("Ball-Good") )
         {

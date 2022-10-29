@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -724,11 +725,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa63998b6bc95d4a87873a7898abcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balls:
-  - {fileID: 1634243933516861804, guid: 579b7f7f7e5ca324093a16ed13585d74, type: 3}
-  - {fileID: 7651728215393611350, guid: 503de3fcd43cb894f937933237cc7e71, type: 3}
   blockLeft: {fileID: 414843400689851023, guid: 902289ab14bb6c64cb5c5294aa7b4f89, type: 3}
   blockRight: {fileID: 7206509155889883419, guid: b07a42bf8a043794897db326feafa87e, type: 3}
+  prefabGood: {fileID: 7651728215393611350, guid: 503de3fcd43cb894f937933237cc7e71, type: 3}
+  prefabBab: {fileID: 1634243933516861804, guid: 579b7f7f7e5ca324093a16ed13585d74, type: 3}
+  ballsGood: []
+  ballsBad: []
 --- !u!4 &1880488597
 Transform:
   m_ObjectHideFlags: 0

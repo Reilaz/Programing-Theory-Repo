@@ -23,6 +23,6 @@ public class Plane : MonoBehaviour
         explosionBall.transform.position = new Vector3(collision.transform.position.x,collision.transform.position.y,collision.transform.position.z);
         explosionBall.Play();
         planeAudio.PlayOneShot(destroyAudio,1.0f);
-        Destroy(collision.gameObject);
+        collision.gameObject.SetActive(false);
     }
 }
