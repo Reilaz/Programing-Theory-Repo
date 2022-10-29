@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-    void SpawnBlocks()
+    IEnumerator DelayEnemy()
     {
         yield return new WaitForSeconds(0.5f);
         while(true)
