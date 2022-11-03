@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private PoolController poolController;
+    private PlayerController playerController;
 
     [Header("System Settings")]
     //private float spawnRate = 10.0f;
@@ -14,17 +16,19 @@ public class GameManager : MonoBehaviour
     private float startDelay = 1.0f;
     private float spawnInterval = 1.0f;
     private bool isInvoke;
+    public Text counterText;
 
     // Start is called before the first frame update
     void Start()
     {
         poolController = GameObject.Find("PoolObjects").GetComponent<PoolController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayCounterPlayer();
     }
     void OnEnable()
     {
@@ -61,5 +65,9 @@ public class GameManager : MonoBehaviour
             EnemyInvoker();
             yield return new WaitForSeconds(0.5f);
         }
+    }
+    void DisplayCounterPlayer()
+    {
+        counterText.text = "Count: " + playerController.CounterValue;
     }
 }

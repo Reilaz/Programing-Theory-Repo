@@ -12,7 +12,7 @@ public class EnemyMove : ObstacleController
     {
         SpeedObstacle = speed;
     }
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         PlayObstacleAudio(bouncyAudio);
     }

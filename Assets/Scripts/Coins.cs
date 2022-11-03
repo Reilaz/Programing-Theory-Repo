@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class Coins : MonoBehaviour
 {
-    public ParticleSystem fireworksParticle;
-    // Start is called before the first frame update
-    void Start()
+    private PlayerController playerController;
+    private int coinPoint;
+    private int indexSound;
+    public int CoinPoint
     {
-        
+        get{    return coinPoint;   }
+        set{    coinPoint = value;  }
+    }
+    public int IndexSound
+    {
+        get{    return indexSound;  }
+        set{    indexSound = value;  }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void Awake()
     {
-        
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-    private void OnCollisionEnter(Collision collision)
+    // Update is called once per frame
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Plane"))
+        if(other.transform.CompareTag("Player"))
         {
-            fireworksParticle.Play();
-            collision.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            UpdatePlayerScore();
+            playerController.PlaySfx(indexSound);
         }
     }
+    void UpdatePlayerScore()
+    {
+        playerController.CounterValue += coinPoint;
+    }  
 }
