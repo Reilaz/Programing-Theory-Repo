@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Begin Encapsulation
     private AudioSource coinAudio;
     [SerializeField] private AudioClip goodClip;
     [SerializeField] private AudioClip badClip;
@@ -17,11 +18,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int counterValue = 0;
     public int CounterValue
     {
-        get
-        {   return counterValue;    }
-        set
-        {   counterValue = value;   }
+        get{    return counterValue;    }
+        set{    counterValue = value;   }
     }
+    public float Speed
+    {
+        get{    return speed;   }
+        set
+        {
+            if (value > 1)
+            {
+                speed = value;
+                Debug.Log(speed);
+            }
+        }
+    }
+    //End Encapsulation
     void Start()
     {
         coinAudio = GetComponent<AudioSource>();
@@ -50,5 +62,15 @@ public class PlayerController : MonoBehaviour
     {
         coinAudio.PlayOneShot(sounds[index],1.0f);
         explosions[index].Play();
+    }
+    public void SlowerPlayer()
+    {
+        StartCoroutine(SlowerTimer());
+    }
+    IEnumerator SlowerTimer()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Speed = 10.0f;
+        Debug.Log("temino de coroutine");
     }
 }

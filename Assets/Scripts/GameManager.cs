@@ -5,27 +5,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //Begin Encapsulation
     private PoolController poolController;
     private PlayerController playerController;
 
     [Header("System Settings")]
-    //private float spawnRate = 10.0f;
     private float spawnRangeX = 10.0f;
     private float spawnPosY = 15.0f;
     private float spawnPosX = 16.0f;
     private float startDelay = 1.0f;
     private float spawnInterval = 1.0f;
     private bool isInvoke;
+    //End Encapsulation
     public Text counterText;
 
-    // Start is called before the first frame update
     void Start()
     {
         poolController = GameObject.Find("PoolObjects").GetComponent<PoolController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         DisplayCounterPlayer();

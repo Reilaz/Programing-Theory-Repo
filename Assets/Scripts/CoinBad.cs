@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Inheritance
 public class CoinBad : Coins
 {
     private int value = -1;

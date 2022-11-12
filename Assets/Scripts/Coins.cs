@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coins : MonoBehaviour
 {
+    //Begin Encapsulation
     private PlayerController playerController;
     private int coinPoint;
     private int indexSound;
@@ -17,14 +18,12 @@ public class Coins : MonoBehaviour
         get{    return indexSound;  }
         set{    indexSound = value;  }
     }
-
-    // Start is called before the first frame update
+    //End Encapsulation
     void Awake()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-    // Update is called once per frame
-    void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if(other.transform.CompareTag("Player"))
         {
@@ -36,5 +35,10 @@ public class Coins : MonoBehaviour
     void UpdatePlayerScore()
     {
         playerController.CounterValue += coinPoint;
-    }  
+    }
+    public void SlowerPlayer(float slower)
+    {
+        playerController.Speed -= slower;
+        playerController.SlowerPlayer();
+    }
 }

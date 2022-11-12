@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class PoolController : MonoBehaviour
 {
+    //Begin Encapsulatio
     [SerializeField] private GameObject prefabEnemy;
     [SerializeField] private GameObject prefabGood;
     [SerializeField] private GameObject prefabBab;
+    [SerializeField] private GameObject prefabSlower;
     [SerializeField] private List<GameObject> ballsGood;
     [SerializeField] private List<GameObject> ballsBad;
     [SerializeField] private List<GameObject> enemyList;
-
+    [SerializeField] private List<GameObject> ballsSlower;
     [SerializeField] private int poolSize = 10;
-    // Start is called before the first frame update
+    //End Encapsulation
+    
     void Start()
     {
         InitPools(enemyList,prefabEnemy);
         InitPools(ballsBad,prefabBab);
         InitPools(ballsGood,prefabGood);
+        InitPools(ballsSlower,prefabSlower);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Begin Abstraction Methods
     void InitPools(List<GameObject> poolList,GameObject prefab)
     {
         for (int i = 0; i < poolSize; i++)
@@ -37,10 +36,12 @@ public class PoolController : MonoBehaviour
     }
     public GameObject SpawnBalls(int ballType)
     {
-        if(ballType > 40)
+        if(ballType < 40)
+            return TypeList(ballsBad);
+        else if(ballType > 40 && ballType < 70)
             return TypeList(ballsGood);
         else
-            return TypeList(ballsBad);
+            return TypeList(ballsSlower);
     }
     public GameObject SpawnEnemy()
     {
@@ -58,4 +59,5 @@ public class PoolController : MonoBehaviour
             }
         return null;
     }
+    //End Abstraction Methods
 }

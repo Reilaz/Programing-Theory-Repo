@@ -12,12 +12,7 @@ public class Plane : MonoBehaviour
     {
         planeAudio = GetComponent<AudioSource>();
     }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnCollisionEnter(Collision collision)
     {
         explosionBall.transform.position = new Vector3(collision.transform.position.x,collision.transform.position.y,collision.transform.position.z);

@@ -557,9 +557,11 @@ MonoBehaviour:
   prefabEnemy: {fileID: 414843400689851023, guid: 902289ab14bb6c64cb5c5294aa7b4f89, type: 3}
   prefabGood: {fileID: 7651728215393611350, guid: 503de3fcd43cb894f937933237cc7e71, type: 3}
   prefabBab: {fileID: 1634243933516861804, guid: 579b7f7f7e5ca324093a16ed13585d74, type: 3}
+  prefabSlower: {fileID: 1634243933516861804, guid: 1b6530ce63a792d439f396326e710eac, type: 3}
   ballsGood: []
   ballsBad: []
   enemyList: []
+  ballsSlower: []
   poolSize: 10
 --- !u!1 &1648811350
 GameObject:
