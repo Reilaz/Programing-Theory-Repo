@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
             if (value > 1)
             {
                 speed = value;
-                Debug.Log(speed);
             }
         }
     }
@@ -71,6 +70,5 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         Speed = 10.0f;
-        Debug.Log("temino de coroutine");
     }
 }

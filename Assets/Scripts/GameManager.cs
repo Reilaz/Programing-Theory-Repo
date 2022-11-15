@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,13 @@ public class GameManager : MonoBehaviour
     private float startDelay = 1.0f;
     private float spawnInterval = 1.0f;
     private bool isInvoke;
+    private bool isPause;
+    //private TextMeshProUGUI stateGameText;
+    //private bool isPlay;
     //End Encapsulation
     public Text counterText;
+    public GameObject menu;
+
 
     void Start()
     {
@@ -26,6 +32,11 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+        
         DisplayCounterPlayer();
     }
     void OnEnable()
@@ -67,5 +78,31 @@ public class GameManager : MonoBehaviour
     void DisplayCounterPlayer()
     {
         counterText.text = "Count: " + playerController.CounterValue;
+    }
+    public void ReturnMenu()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
+    }
+    void PauseGame()
+    {
+        if(!isPause)
+        {
+            isPause = true;
+            menu.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            isPause = false;
+            menu.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
